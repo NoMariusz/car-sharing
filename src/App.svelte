@@ -1,9 +1,15 @@
 <script>
     import Tailwindcss from "./Tailwindcss.svelte";
     import Router from "svelte-spa-router";
-    import Home from "./home/Home.svelte";
-    import NotFound from "./common/NotFound.svelte";
-    import Header from "./common/Header.svelte";
+    import Home from "./components/Home.svelte";
+    import NotFound from "./components/common/NotFound.svelte";
+    import Header from "./components/common/Header.svelte";
+    import Register from "./components/Register.svelte";
+    import Login from "./components/Login.svelte";
+
+    import { updateUserData } from "./utils";
+
+    updateUserData();
 
     export let name;
 </script>
@@ -15,6 +21,8 @@
         routes={{
             "/": Home,
             "/home": Home,
+            "/register": Register,
+            "/login": Login,
             "*": NotFound,
         }}
     />
