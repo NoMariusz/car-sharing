@@ -19,9 +19,6 @@ function main()
         );
 
         if ($dbResult["success"]) {
-            session_start();
-            $_SESSION["uid"] = $dbResult["result"];
-
             $response = array('result' => true);
         } else {
             $response["msg"] = $dbResult["msg"];

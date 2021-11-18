@@ -14,24 +14,30 @@ function main()
         $password = urldecode($headers['password']);
 
         $result = DbManager::make_safe_querry(
-            "SELECT user_id FROM `users` WHERE login = ? AND password = sha1(?);",
+            "SELECT * FROM `users` WHERE login = ? AND password = sha1(?);",
             "ss",
             [$login, $password]
         );
 
-        if ($result === false) {
+        if ($result["success"] === false) {
             $response["msg"] = "Bad query";
             return;
         }
 
-        if (count($result) > 0) {
-            session_start();
-            $_SESSION["uid"] = $result[0]['user_id'];
+        $data = $result["msg"];
+        if (count($data) > 0) {
+            if (!$data[0]['is_activated']) {
+                $response["msg"] = "This account isn't activated";
+                return;
+            }
 
+            session_start();
+            $_SESSION["uid"] = $data[0]['user_id'];
             $response = array('result' => true);
-        } else {
-            $response["msg"] = "Can't find user with that login and password";
+            return;
         }
+
+        $response["msg"] = "Can't find user with that login and password";
     }
 }
 

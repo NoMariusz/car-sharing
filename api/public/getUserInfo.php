@@ -11,7 +11,7 @@ function main()
         $id = $_SESSION["uid"];
 
         $data = DbManager::make_querry("SELECT * FROM users WHERE user_id = $id");
-        $response['user'] = $data[0];
+        $response['user'] = $data["msg"][0];
         $response['logged'] = true;
     }
 

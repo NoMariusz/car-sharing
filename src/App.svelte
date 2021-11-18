@@ -1,3 +1,8 @@
+<script context="module">
+    import { checkIfStuffMember, updateUserData } from "./utils";
+    updateUserData();
+</script>
+
 <script>
     import Tailwindcss from "./Tailwindcss.svelte";
     import Router from "svelte-spa-router";
@@ -7,15 +12,19 @@
     import Register from "./components/Register.svelte";
     import Login from "./components/Login.svelte";
 
-    import { updateUserData } from "./utils";
-
-    updateUserData();
+    import AdminPanel from "./components/admin_panel/AdminPanel.svelte";
+    import { userData } from "./stores";
 
     export let name;
+
+    let isStuffMember = false;
+    userData.subscribe((v) => {
+        isStuffMember = checkIfStuffMember();
+    });
 </script>
 
 <Tailwindcss />
-<Header />
+<Header isStuff={isStuffMember} />
 <main>
     <Router
         routes={{
@@ -23,6 +32,7 @@
             "/home": Home,
             "/register": Register,
             "/login": Login,
+            "/admin": AdminPanel,
             "*": NotFound,
         }}
     />
