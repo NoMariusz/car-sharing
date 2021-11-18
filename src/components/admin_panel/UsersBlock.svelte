@@ -45,7 +45,7 @@
                 </p>
             </div>
             <div class="flex flex-wrap -m-2">
-                <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+                <div class="lg:w-4/5 w-full mx-auto overflow-auto">
                     <table
                         class="table-auto w-full text-left whitespace-no-wrap"
                     >
@@ -62,6 +62,10 @@
                                 <th
                                     class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
                                     >email</th
+                                >
+                                <th
+                                    class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
+                                    >reputation</th
                                 >
                                 <th
                                     class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"
@@ -82,6 +86,7 @@
                                     <td class="px-4 py-3">{user.user_id}</td>
                                     <td class="px-4 py-3">{user.login}</td>
                                     <td class="px-4 py-3">{user.email}</td>
+                                    <td class="px-4 py-3">{user.reputation}</td>
                                     <td class="px-4 py-3 text-lg text-gray-900">
                                         <select
                                             name="role"

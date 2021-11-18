@@ -32,6 +32,9 @@
                 {#if isStuff}
                     <a href="#/admin" class="mr-5 white-txt">Admin panel</a>
                 {/if}
+                {#if $userData.logged && !isStuff}
+                    <a href="#/panel" class="mr-5 white-txt">Client panel</a>
+                {/if}
             </nav>
             <div class="flex-1 flex items-center justify-end">
                 {#if $userData.logged}

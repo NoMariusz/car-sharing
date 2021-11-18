@@ -14,6 +14,7 @@
 
     import AdminPanel from "./components/admin_panel/AdminPanel.svelte";
     import { userData } from "./stores";
+    import ClientPanel from "./components/client_panel/ClientPanel.svelte";
 
     export let name;
 
@@ -33,6 +34,7 @@
             "/register": Register,
             "/login": Login,
             "/admin": AdminPanel,
+            "/panel": ClientPanel,
             "*": NotFound,
         }}
     />
