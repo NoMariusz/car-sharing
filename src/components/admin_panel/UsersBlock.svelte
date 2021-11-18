@@ -24,7 +24,6 @@
             }&role_id=${user.role_id}`
         );
         const d = await res.json();
-        console.log(d);
         if (!d.success) {
             alert(d.msg);
         }
