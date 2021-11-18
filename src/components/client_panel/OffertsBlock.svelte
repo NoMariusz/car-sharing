@@ -1,5 +1,5 @@
 <script>
-    import { API_PATH } from "../../constants";
+    import { API_PATH, CAR_PRICE_PER_HOUR } from "../../constants";
 
     export let loadAll;
 
@@ -46,13 +46,29 @@
 
     $: getValuesForKey = (key) => ["", ...new Set(offers.map((e) => e[key]))];
 
-    let selectedToReserve = null;
-    const now = new Date().toLocaleString().replace(", ", "T");
+    const format2digits = (num) =>
+        num.toLocaleString("en-US", {
+            minimumIntegerDigits: 2,
+            useGrouping: false,
+        });
+    const date = new Date();
+    const now = `${date.getFullYear()}-${format2digits(
+        date.getMonth() + 1
+    )}-${format2digits(date.getDate())}T${date.toLocaleTimeString()}`;
 
+    let selectedToReserve = null;
     let reserveDates = {
         start: now,
         end: now,
     };
+
+    let price = 0;
+    $: {
+        const ds = Date.parse(reserveDates.start);
+        const es = Date.parse(reserveDates.end);
+        const hours_passed = (es - ds) / (1000 * 60 * 60);
+        price = Math.max(0, Math.ceil(CAR_PRICE_PER_HOUR * hours_passed));
+    }
 
     const selectToReserve = (item) => {
         selectedToReserve = item;
@@ -143,10 +159,14 @@
                     />
                 </div>
             </div>
-            <button
-                on:click={reserveCar}
-                class="flex-1 p-1 m-1 text-accent rounded">Send request</button
-            >
+            <div class="flex justify-center">
+                <p class="text-gray-500">Price: {price}$</p>
+                <button
+                    on:click={reserveCar}
+                    class="flex-1 p-1 m-1 text-accent rounded"
+                    >Send request</button
+                >
+            </div>
         </div>
     </div>
 {/if}
