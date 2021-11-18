@@ -1,22 +1,9 @@
 <script>
     import { API_PATH } from "../../constants";
 
-    const loadOffers = async () => {
-        const res = await fetch(`${API_PATH}public/getOffers.php`);
-        const d = await res.json();
-        if (d.success) {
-            offers = [
-                ...d.data.map((e) => ({
-                    ...e,
-                    is_reserved: parseInt(e.is_reserved),
-                    reservations_count: parseInt(e.reservations_count),
-                })),
-            ];
-        }
-        console.log(offers);
-    };
-    let offers = [];
-    loadOffers();
+    export let loadAll;
+
+    export let offers;
 
     const getStatus = (item) => {
         return item.is_reserved
@@ -84,7 +71,7 @@
         const d = await res.json();
         if (!d.success) alert(d.msg);
         cancelSelectToReserve();
-        loadOffers();
+        loadAll();
     };
 </script>
 
@@ -207,7 +194,7 @@
                     <div
                         class="flex-grow flex flex-row justify-center flex-wrap flex-auto"
                     >
-                        <div class="flex flex-col p-1 border-r-2">
+                        <div class="flex flex-col p-1 border-r-2 flex-1">
                             <p class="text-gray-500">Year: {item.year}</p>
                             <div class="flex justify-center items-center">
                                 <div
@@ -219,7 +206,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="flex flex-col p-1 flex-wrap">
+                        <div class="flex flex-col p-1 flex-wrap flex-1">
                             <p class="text-gray-500">
                                 Observers: {item.reservations_count || 0}
                             </p>
