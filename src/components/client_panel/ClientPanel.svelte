@@ -11,6 +11,7 @@
         if (d.success) {
             reservations = [...d.data];
         }
+        console.log(reservations);
     };
     let reservations = [];
     loadReservations();

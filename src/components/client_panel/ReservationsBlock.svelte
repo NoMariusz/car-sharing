@@ -108,7 +108,7 @@
                                 </p>
                             </div>
                         </div>
-                        {#if item.reservation_status_id == RESERVATION_STATUSES.ended}
+                        {#if item.reservation_status_id == RESERVATION_STATUSES.Ended}
                             <div class="flex flex-row">
                                 <p class="text-gray-500">Return car date:</p>
                                 <p class="text-gray-400">
@@ -119,14 +119,14 @@
                     </div>
                 </div>
                 <div class="flex-1">
-                    {#if item.reservation_status_id == RESERVATION_STATUSES.pending}
+                    {#if item.reservation_status_id == RESERVATION_STATUSES.Pending}
                         <button
                             on:click={() => cancelReservation(item)}
                             class="flex-1 p-1 m-1 text-accent rounded"
                             >Cancel Reservation</button
                         >
                     {/if}
-                    {#if item.reservation_status_id == RESERVATION_STATUSES.active}
+                    {#if item.reservation_status_id == RESERVATION_STATUSES.Active}
                         <button
                             on:click={() => endReservation(item)}
                             class="flex-1 p-1 m-1 text-primary-dark rounded"

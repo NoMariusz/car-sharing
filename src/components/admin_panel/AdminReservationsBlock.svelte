@@ -13,8 +13,15 @@
 
     const reservationStatusesNames = Object.keys(RESERVATION_STATUSES);
 
-    const updateReservation = (reservation) => {
-        console.log(reservation);
+    const updateReservation = async (reservation) => {
+        const res = await fetch(
+            `${API_PATH}public/updateReservation.php?res_id=${reservation.id}&res_status_id=${reservation.reservation_status_id}&start_date=${reservation.start_date}&end_date=${reservation.end_date}`
+        );
+        const d = await res.json();
+        if (!d.success) {
+            alert(d.msg);
+        }
+        await loadReservations();
     };
 
     let sortBy = { col: "id", ascending: true };
