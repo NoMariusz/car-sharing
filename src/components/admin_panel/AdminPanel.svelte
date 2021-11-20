@@ -1,4 +1,6 @@
 <script>
+    import { ADMIN_ROLE } from "../../constants";
+
     import { userData } from "../../stores";
     import { checkIfStuffMember } from "../../utils";
     import AdminReservationsBlock from "./AdminReservationsBlock.svelte";
@@ -14,7 +16,9 @@
 <div class="flex justify-center flex-col">
     {#if isStuff}
         <h1 class="text-5xl m-5 text-center">Admin Panel</h1>
-        <UsersBlock />
+        {#if $userData?.user?.role_id == ADMIN_ROLE}
+            <UsersBlock />
+        {/if}
         <AdminReservationsBlock />
     {:else}
         <h1 class="text-5xl m-5 text-center">Access denied</h1>

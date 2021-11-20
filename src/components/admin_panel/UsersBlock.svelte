@@ -1,5 +1,10 @@
 <script>
-    import { API_PATH, ID_TO_ROLE, ROLES_IDS } from "../../constants";
+    import {
+        ADMIN_ROLE,
+        API_PATH,
+        ID_TO_ROLE,
+        ROLES_IDS,
+    } from "../../constants";
 
     const getUsers = async () => {
         const res = await fetch(`${API_PATH}public/getUsers.php`);
@@ -17,7 +22,10 @@
     getUsers();
 
     const updateUser = async (user) => {
-        console.log(user);
+        if (user.role_id == ADMIN_ROLE) {
+            alert("Can not create second Admin account!");
+            return;
+        }
         const res = await fetch(
             `${API_PATH}public/updateUser.php?user_id=${user.user_id}&active=${
                 user.is_activated ? "1" : "0"
@@ -107,7 +115,10 @@
                                         />
                                     </td>
                                     <td class="px-4 py-3 text-lg text-gray-900"
-                                        ><button on:click={updateUser(user)}>
+                                        ><button
+                                            on:click={updateUser(user)}
+                                            disabled={user.login == "admin"}
+                                        >
                                             Save changes
                                         </button>
                                     </td>
