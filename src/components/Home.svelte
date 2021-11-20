@@ -80,6 +80,6 @@
     </section>
     <footer class="flex mt-20 justify-between text-gray-600 body-font w-full">
         <p>© 2021-2022 NoMariusz</p>
-        <a href="./statue.pdf" target="blank">Statue of the service </a>
+        <a href="./assets/statue.pdf" target="blank">Statue of the service </a>
     </footer>
 </div>
