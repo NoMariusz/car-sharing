@@ -21,7 +21,44 @@
         if (!d.success) alert(d.msg);
         loadAll();
     };
+
+    let qrElementRef = null;
+    let qrCode = null;
+    const showQr = (item) => {
+        qrCode = new QRCode(qrElementRef, {
+            text: JSON.stringify({
+                reservation_id: item.id,
+                car_id: item.car_id,
+            }),
+            correctLevel: QRCode.CorrectLevel.H,
+        });
+    };
+
+    const cancelShowQr = () => {
+        qrCode.clear();
+        qrCode = null;
+        // because qrCode.clear() does not clear html nodes
+        qrElementRef.innerHTML = "";
+    };
 </script>
+
+<div
+    class={`fixed w-full top-0 left-0 bg-gray-300 h-full bg-opacity-60 ${
+        qrCode ? "" : "hidden"
+    }`}
+    on:click={cancelShowQr}
+>
+    <div
+        class="lg:w-2/3 md:w-1/1 mx-auto border-gray-200 border p-4 m-10 rounded-lg bg-white"
+        on:click={(e) => e.stopPropagation()}
+    >
+        <div
+            class="h-full flex items-center border-gray-200 border p-4 rounded-lg"
+        >
+            <div bind:this={qrElementRef} class="mx-auto" />
+        </div>
+    </div>
+</div>
 
 <div class="flex flex-wrap -m-2 lg:w-2/3 md:w-1/1 mx-auto mt-4">
     <p class="text-3xl text-primary-dark text-center p-2 w-full">
@@ -92,6 +129,11 @@
                             on:click={() => endReservation(item)}
                             class="flex-1 p-1 m-1 text-primary-dark rounded"
                             >Return car</button
+                        >
+                        <button
+                            on:click={() => showQr(item)}
+                            class="flex-1 p-1 m-1 text-accent rounded"
+                            >Access Code</button
                         >
                     {/if}
                 </div>

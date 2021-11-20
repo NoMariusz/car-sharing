@@ -93,7 +93,7 @@
 
 {#if selectedToReserve}
     <div
-        class="fixed w-full top-0 left-0 bg-gray-300 h-full"
+        class="fixed w-full top-0 left-0 bg-gray-300 h-full  bg-opacity-60"
         on:click={cancelSelectToReserve}
     >
         <div
