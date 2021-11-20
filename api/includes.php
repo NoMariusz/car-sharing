@@ -5,5 +5,6 @@
 $root = $_SERVER['DOCUMENT_ROOT'] . '/api';
 
 include_once($root . '/hidden.php');
+include_once($root . '/constants.php');
 include_once($root . '/headers.php');
 include_once($root . '/helpers/DbManager.php');

@@ -1,5 +1,5 @@
 <script>
-    import { API_PATH } from "../../constants";
+    import { API_PATH, RESERVATION_STATUSES } from "../../constants";
 
     export let reservations;
     export let loadAll;
@@ -7,6 +7,15 @@
     const cancelReservation = async (item) => {
         const res = await fetch(
             `${API_PATH}public/cancelReservation.php?reservation_id=${item.id}`
+        );
+        const d = await res.json();
+        if (!d.success) alert(d.msg);
+        loadAll();
+    };
+
+    const endReservation = async (item) => {
+        const res = await fetch(
+            `${API_PATH}public/endReservation.php?reservation_id=${item.id}`
         );
         const d = await res.json();
         if (!d.success) alert(d.msg);
@@ -60,14 +69,29 @@
                                 </p>
                             </div>
                         </div>
+                        {#if item.reservation_status_id == RESERVATION_STATUSES.ended}
+                            <div class="flex flex-row">
+                                <p class="text-gray-500">Return car date:</p>
+                                <p class="text-gray-400">
+                                    {item.return_date}
+                                </p>
+                            </div>
+                        {/if}
                     </div>
                 </div>
                 <div class="flex-1">
-                    {#if item.status == "Pending"}
+                    {#if item.reservation_status_id == RESERVATION_STATUSES.pending}
                         <button
                             on:click={() => cancelReservation(item)}
                             class="flex-1 p-1 m-1 text-accent rounded"
                             >Cancel Reservation</button
+                        >
+                    {/if}
+                    {#if item.reservation_status_id == RESERVATION_STATUSES.active}
+                        <button
+                            on:click={() => endReservation(item)}
+                            class="flex-1 p-1 m-1 text-primary-dark rounded"
+                            >Return car</button
                         >
                     {/if}
                 </div>

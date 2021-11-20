@@ -154,7 +154,7 @@
                     <p>End date:</p>
                     <input
                         type="datetime-local"
-                        min={now}
+                        min={reserveDates.start}
                         bind:value={reserveDates.end}
                     />
                 </div>

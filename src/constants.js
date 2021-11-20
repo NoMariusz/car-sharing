@@ -14,3 +14,9 @@ export const ID_TO_ROLE = {
     2: "mod",
     3: "client",
 };
+
+export const RESERVATION_STATUSES = {
+    active: 2,
+    pending: 1,
+    ended: 3,
+};

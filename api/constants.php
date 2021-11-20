@@ -1,0 +1,2 @@
+<?php
+$ENDED_RESERVATION_STATUS_ID = 3;

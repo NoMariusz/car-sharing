@@ -5,7 +5,7 @@ $response = array('success' => false, 'data' => null);
 session_start();
 if (isset($_SESSION["uid"])) {
     $uid = $_SESSION["uid"];
-    $res = DbManager::make_querry("SELECT r.id, r.reservation_status_id, r.start_date, r.end_date, rs.name as status, cars.color, ct.mark, ct.model, ct.year
+    $res = DbManager::make_querry("SELECT r.id, r.reservation_status_id, r.start_date, r.end_date, r.return_date, rs.name as status, cars.color, ct.mark, ct.model, ct.year
     FROM `reservations` as r
     INNER JOIN reservation_statuses as rs ON r.reservation_status_id = rs.id
     INNER JOIN cars ON cars.id = r.car_id
