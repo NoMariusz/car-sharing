@@ -8,8 +8,8 @@
 
     const registerUser = async () => {
         const myHeaders = new Headers();
-        myHeaders.append("login", login);
-        myHeaders.append("password", encodeURIComponent(password));
+        myHeaders.append("Login", login);
+        myHeaders.append("Password", encodeURIComponent(password));
         myHeaders.append("email", email);
 
         const res = await fetch(API_PATH + "public/register.php", {

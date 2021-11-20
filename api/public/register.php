@@ -7,9 +7,9 @@ function main()
 
     $headers = apache_request_headers();
 
-    if (isset($headers['login'], $headers['password'])) {
-        $login = $headers['login'];
-        $password =  urldecode($headers['password']);
+    if (isset($headers['Login'], $headers['Password'])) {
+        $login = $headers['Login'];
+        $password =  urldecode($headers['Password']);
         $email = $headers['email'];
 
         $dbResult = DbManager::make_safe_insert_id_querry(
