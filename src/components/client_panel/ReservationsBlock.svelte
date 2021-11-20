@@ -48,6 +48,8 @@
     }`}
     on:click={cancelShowQr}
 >
+    <script
+        src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <div
         class="lg:w-2/3 md:w-1/1 mx-auto border-gray-200 border p-4 m-10 rounded-lg bg-white"
         on:click={(e) => e.stopPropagation()}

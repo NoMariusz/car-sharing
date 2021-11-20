@@ -16,7 +16,8 @@ export const ID_TO_ROLE = {
 };
 
 export const RESERVATION_STATUSES = {
-    active: 2,
-    pending: 1,
-    ended: 3,
+    Active: "2",
+    Pending: "1",
+    Ended: "3",
+    Rejected: "4",
 };
