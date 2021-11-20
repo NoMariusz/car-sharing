@@ -45,14 +45,18 @@ class DbManager
 
     static function make_no_result_querry($query)
     {
-        $mysqli =  self::make_connection();
+        $response = ["success" => false, "msg" => ""];
 
+        $mysqli =  self::make_connection();
         $res = $mysqli->query($query);
+
+        if (!$res) $response["msg"] = $mysqli->error;
+        $response["success"] = $res;
 
         // close connection
         $mysqli->close();
 
-        return ["success" => $res, "msg" => $mysqli->error];
+        return $response;
     }
 
     static function make_safe_no_result_querry($query, $types = null, $params = null)

@@ -36,22 +36,30 @@
             alert(d.msg);
         }
     };
+
+    let visible = true;
 </script>
 
-<div class="flex justify-center items-center p-2">
+<div class="flex justify-center items-center p-1">
     <section class="text-gray-600 body-font w-full">
-        <div class="container px-5 py-24 mx-auto">
+        <div class="container px-5 py-10 mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
                 <h1
-                    class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
+                    class="sm:text-3xl text-2xl font-medium title-font mb-1 text-gray-900"
                 >
                     All users
                 </h1>
-                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base mb-2">
                     You can activate, deactivate, or change role for users
                 </p>
+                <button
+                    class="w-auto p-1 mx-auto bg-primary-light"
+                    on:click={() => {
+                        visible = !visible;
+                    }}>Hide/Show block</button
+                >
             </div>
-            <div class="flex flex-wrap -m-2">
+            <div class={`flex flex-wrap -m-2 ${visible ? "" : "hidden"}`}>
                 <div class="lg:w-4/5 w-full mx-auto overflow-auto">
                     <table
                         class="table-auto w-full text-left whitespace-no-wrap"

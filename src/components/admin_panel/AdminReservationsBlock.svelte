@@ -1,6 +1,7 @@
 <script>
     import { API_PATH, RESERVATION_STATUSES } from "../../constants";
 
+    let reservations = [];
     const loadReservations = async () => {
         const res = await fetch(`${API_PATH}public/getAllReservations.php`);
         const d = await res.json();
@@ -8,7 +9,6 @@
             reservations = [...d.data];
         }
     };
-    let reservations = [];
     loadReservations();
 
     const reservationStatusesNames = Object.keys(RESERVATION_STATUSES);
@@ -63,7 +63,7 @@
 
 <div class="flex justify-center items-center">
     <section class="text-gray-600 body-font w-full">
-        <div class="py-24 w-full mx-auto">
+        <div class="py-2 w-full mx-auto">
             <div class="flex flex-col text-center w-full mb-20">
                 <h1
                     class="sm:text-3xl text-2xl font-medium   mb-4 text-gray-900"
@@ -74,7 +74,6 @@
                     Show, change reservation status, change reservation dates
                 </p>
             </div>
-
             <div class="flex flex-wrap -m-2 lg:w-2/3 md:w-1/1 mx-auto">
                 <div
                     class="flex justify-center items-center m-2 flex-wrap w-full"
@@ -111,6 +110,13 @@
                             </select>
                         </div>
                     {/each}
+                </div>
+
+                <div class="flex w-full justify-end p-1 m-2">
+                    <button
+                        class=" bg-primary-light"
+                        on:click={loadReservations}>Refresh reservations</button
+                    >
                 </div>
             </div>
 

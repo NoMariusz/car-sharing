@@ -11,7 +11,6 @@
         if (d.success) {
             reservations = [...d.data];
         }
-        console.log(reservations);
     };
     let reservations = [];
     loadReservations();
@@ -28,7 +27,6 @@
                 })),
             ];
         }
-        console.log(offers);
     };
     let offers = [];
     loadOffers();
