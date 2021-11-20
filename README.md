@@ -2,7 +2,7 @@
 
 car sharing system - school project
 
-Try in action -> (here)[http://mariuszg-car-sharing.ct8.pl]
+Try in action -> [here](http://mariuszg-car-sharing.ct8.pl)
 
 ## Technologies
 
