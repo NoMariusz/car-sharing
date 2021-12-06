@@ -7,8 +7,8 @@
 
     const loginUser = async () => {
         const myHeaders = new Headers();
-        myHeaders.append("Login", login);
-        myHeaders.append("Password", encodeURIComponent(password));
+        myHeaders.append("login", login);
+        myHeaders.append("password", encodeURIComponent(password));
 
         const res = await fetch(API_PATH + "public/login.php", {
             headers: myHeaders,
